@@ -67,7 +67,7 @@ points:
     thumbfan:
       anchor:
         ref: matrix_inner_bottom
-        shift: [-1.5 kx, -1 ky]
+        shift: [-2.5 kx, -1 ky]
       columns:
         near:
           spread: kx
@@ -77,14 +77,14 @@ points:
             column_net: P18
         home:
           spread: kx
-          rotate: -15
-          origin: [-0.5 kx, -0.5 ky]
+          rotate: -8
+          origin: [-0.5 kx, -0.9 ky]
           key:
             column_net: P15
         far:
           spread: kx
-          rotate: -15
-          origin: [-0.5 kx, -0.5 ky]
+          rotate: -8
+          origin: [-0.5 kx, -0.9 ky]
           key:
             column_net: P14
       rows:
@@ -182,13 +182,13 @@ outlines:
         type: circle
         anchor:
           - ref: matrix_ring_home
-            shift: [-0.5 kx, 0 ky]
+            shift: [-0.55 kx, 0.45 ky]
         radius: 1.05
       bottom_left:
         type: circle
         anchor:
           - ref: matrix_pinky_bottom
-            shift: [0.5 kx, 0]
+            shift: [0.7 kx, -0.2 ky]
         radius: 1.05
       top_right:
         type: circle
@@ -200,7 +200,7 @@ outlines:
         type: circle
         anchor:
           - ref: matrix_index_bottom
-            shift: [0, -1.06 ky]
+            shift: [1, -1.6 ky]
         radius: 1.05
       thumb:
         type: circle
@@ -267,7 +267,7 @@ pcbs:
             - matrix_ring_home
           shift: [-0.25 kx, 0.5 ky]
         params:
-          text: "JLCJLCJLCJLC"
+          text: "Hopper v1.0"
           justify: left
   bottom_plate:
     include_keys: false
@@ -431,7 +431,7 @@ pcbs:
             - matrix_pinky_bottom
           shift: [0.75 kx, 0]
         params:
-          text: "samoklava v0.1\\nby soundmonster"
+          text: "Hopper Flip v1.0"
           justify: left
       info_r:
         type: text
@@ -441,6 +441,6 @@ pcbs:
           shift: [0.75 kx, 0]
         params:
           layer: B.SilkS
-          text: "samoklava v0.1\\nby soundmonster"
+          text: "Hopper Flip v1.0"
           justify: right mirror
 
