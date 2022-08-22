@@ -194,11 +194,21 @@ pcbs:
         outline: preview
         layer: Eco1.User
     footprints:
+      # promicro:
+      #   type: promicro_pretty
+      #   anchor:
+      #     ref: matrix_inner_home
+      #     shift: [22, -2]
+      #     rotate: -90mcu_l:
       promicro:
-        type: promicro_pretty
+        type: promicro
+        params:
+          orientation: up
+          batteryPins: true
         anchor:
-          ref: matrix_inner_home
-          shift: [22, -2]
+          ref:
+            - matrix_inner_top
+          shift: 22, -2]
           rotate: -90
       trrs:
         type: trrs
