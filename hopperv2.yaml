@@ -1,0 +1,274 @@
+points:
+  key:
+    padding: cy
+    footprints:
+        choc_hotswap:
+          type: choc
+          nets:
+            from: =colrow
+            to: =column_net
+          params:
+            keycaps: true
+            reverse: true
+            hotswap: true
+        # Comment out this to remove the non-hotswap footprint
+        choc:
+          type: choc
+          anchor:
+            rotate: 180
+          nets:
+            from: =colrow
+            to: =column_net
+          params:
+              keycaps: true
+              reverse: true
+        diode:
+           type: diode
+           anchor:
+             rotate: 180
+             shift: [0,-8.1]
+             #shift: [0, -7.5]
+           nets:
+             from: =colrow
+             to: =row_net
+        # rgb:
+        #   type: rgb
+        #   nets:
+        #     din: P20
+        #     dout: ''
+        #   anchor:
+        #     shift: [0,-4.5]
+  zones: 
+    matrix:
+      anchor:
+      columns:
+        pinkyOuter:
+          stagger: 0  
+          spread: cx
+          rows:
+            top:
+              bind: [0,3,0,1]          
+            home:
+              bind: [0,3,2,1]
+            bottom:
+              bind: [0,3,1,1]
+          key:
+            column_net: P9
+        pinky:
+          stagger: 5
+          spread: cx
+          rows:
+            top:
+              bind: [0,3,0,2]          
+            home:
+            bottom:
+              bind: [0,3,6,1]
+          key:
+            column_net: P8
+        ring:
+          stagger: 12
+          spread: cx
+          rows:
+            top:
+              bind: [0,3,0,2] 
+            bottom:
+              bind: [0,3,18,2]
+          key:
+            column_net: P7
+        middle:
+          stagger: 5
+          spread: cx
+          rows:
+            top:
+              bind: [0,3,0,2] 
+            bottom:
+              bind: [0,5,23,0]
+          key:
+            column_net: P6
+        index:
+          stagger: -6
+          spread: cx
+          rows:
+            top:
+              bind: [2,0,0,-3]
+            home:
+              bind: [0,2,0,0]
+            bottom: 
+              bind: [0,2,0,0]
+          key:
+            column_net: P5
+        inner:
+          stagger: -2
+          spread: cx
+          rows:
+            top:
+              bind: [0,2,0,3]
+            home:
+              bind: [8,25,0,0]
+            bottom: 
+              bind: [0,25,7,0]
+          key:
+            column_net: P4
+      rows:
+        bottom:
+          bind: [0,0,0,0]
+          row_net: P3
+        home:
+          bind: [0,3,0,0]
+          row_net: P2
+        top:
+          bind: [0,3,0,0]
+          row_net: P21
+    thumbfan:
+      anchor:
+        ref: matrix_inner_bottom
+        shift: [-cx*1.5, -cx-2.9]
+      columns:
+        near:
+          rotate: -18
+          spread: cx+1.5
+          rows:
+            thumb:
+              bind: [8,4,1,12]
+          key:
+            column_net: P14
+        far: 
+          spread: cx
+          rotate: -11
+          origin: [-10, -10]
+          rows:
+            thumb:
+              bind: [13,1.7,1,5]
+          key:
+            column_net: P16
+      rows:
+        thumb:
+          row_net: P10
+    # Uncomment this part if you only want 2 outer pinkey keys
+    # also comment out the first column in the main matrix
+    # pinkyOuter:
+    #   anchor:
+    #     ref: matrix_pinky_top
+    #     shift: [-cx-1.2, -cx-10]
+    #   columns:
+    #     reachPinkey:
+    #       key:
+    #         column_net: P9
+    #       rows:
+    #         top:
+    #           bind: [0,2.5,0,1]
+    #           colrow: P0       
+    #         home:
+    #           bind: [0,2.5,0,1]
+    #           colrow: P3
+    #   rows:
+    #     home:
+    #       bind: [0,3,0,0]
+    #       row_net: P3
+    #     top:
+    #       bind: [0,3,0,0]
+    #       row_net: P0
+outlines:
+  exports:
+    raw: 
+      - type: keys
+        side: left
+        size: [1cx - 0.5 , 1cx -0.5]
+    cutout:
+      - type: outline
+        name: raw
+        fillet: 1.7
+    keycap_outlines:
+      - type: keys
+        side: left
+        size: [1cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
+        bound: false
+    preview:
+        [keycap_outlines]
+pcbs:
+  hopperv2:
+    outlines:
+      matrix:
+        outline: cutout
+      keycaps:
+        outline: preview
+        layer: Eco1.User
+    footprints:
+      promicro:
+        type: promicro_pretty
+        anchor:
+          ref: matrix_inner_home
+          shift: [22, -2]
+          rotate: -90
+      trrs:
+        type: trrs
+        anchor:
+          ref: matrix_inner_bottom
+          shift: [34,-13]
+          rotate: -90
+        nets:
+          A: GND
+          B: GND
+          C: P0
+          D: VCC
+        params:
+          reverse: true
+          symmetric: true
+      pcm12:
+        type: pcm12
+        anchor:
+          ref: thumbfan_far_thumb
+          shift: [7, 14]
+          rotate: 90
+        nets:
+          from: pos  
+          to: RAW
+        params:
+          reverse: true 
+      b3u1000p:
+        type: b3u1000p
+        nets:
+          r1: RST  
+          r2: GND
+        anchor:
+          ref: matrix_inner_bottom
+          shift: [18,-10.5]
+          rotate: 90
+        params:
+          reverse: true 
+      bat:
+        type: bat
+        nets: 
+          neg: GND
+        anchor:
+          ref: matrix_inner_bottom
+          shift: [22,-3]
+          rotate: 90
+      via1:
+        type: via
+        anchor: 
+          ref: thumbfan_far_thumb
+          shift: [1, 15]
+        nets: 
+          net: RAW 
+      via2:
+        type: via
+        anchor: 
+          ref: thumbfan_far_thumb
+          shift: [1, 13]
+        nets: 
+          net: pos 
+      via3:
+        type: via
+        anchor: 
+          ref: matrix_inner_bottom
+          shift: [15,-8]
+        nets: 
+          net: GND 
+      via4:
+        type: via
+        anchor: 
+          ref: matrix_inner_bottom
+          shift: [15,-12]
+        nets: 
+          net: RST
