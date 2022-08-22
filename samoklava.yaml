@@ -208,7 +208,7 @@ pcbs:
         anchor:
           ref:
             - matrix_inner_top
-          shift: 22, -2]
+          shift: [22, -2]
           rotate: -90
       trrs:
         type: trrs
